@@ -24,7 +24,7 @@ import utils.EMF_Creator.Strategy;
 
 //Uncomment the line below, to temporarily disable this test
 //@Disabled
-public class RenameMeResourceTest {
+public class MovieResourceTest {
 
     private static final int SERVER_PORT = 7777;
     private static final String SERVER_URL = "http://localhost/api";
@@ -62,14 +62,14 @@ public class RenameMeResourceTest {
     
     // Setup the DataBase (used by the test-server and this test) in a known state BEFORE EACH TEST
     //TODO -- Make sure to change the EntityClass used below to use YOUR OWN (renamed) Entity class
-  //  @BeforeEach
+    @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
         r1 = new Movie("Some txt", 2012, "More text");
         r2 = new Movie("aaa", 2020, "bbb");
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("Movies.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Movie.deleteAllRows").executeUpdate();
             em.persist(r1);
             em.persist(r2); 
             em.getTransaction().commit();
@@ -77,15 +77,16 @@ public class RenameMeResourceTest {
             em.close();
         }
     }
+  
     
-    @Test
+  //  @Test
     public void testServerIsUp() {
         System.out.println("Testing is server UP");
         given().when().get("/xxx").then().statusCode(200);
     }
    
     //This test assumes the database contains two rows
-    @Test
+    //@Test
     public void testDummyMsg() throws Exception {
         given()
         .contentType("application/json")

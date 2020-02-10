@@ -19,13 +19,27 @@ public class MovieFacade {
     //Private Constructor to ensure Singleton
     private MovieFacade() {}
     
+    public static void main(String[] args) {
+        EntityManagerFactory emf
+                = Persistence.createEntityManagerFactory("pu");
+        EntityManager em = emf.createEntityManager();
+        MovieFacade facade = MovieFacade.getMovieFacade(emf); 
+                
+        Movie movie1 = new Movie ("Hobitten", 2020, "test"); 
+        Movie movie2 = new Movie ("Titanic", 2000, "test2"); 
+        
+        facade.addMovie(movie1); 
+        facade.addMovie(movie2); 
+
+    }
+    
     
     /**
      * 
      * @param _emf
      * @return an instance of this facade class.
      */
-    public static MovieFacade getFacadeExample(EntityManagerFactory _emf) {
+    public static MovieFacade getMovieFacade(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
             instance = new MovieFacade();

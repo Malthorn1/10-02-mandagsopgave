@@ -32,7 +32,7 @@ public class MovieFacadeTest {
                 "dev",
                 "ax2",
                 EMF_Creator.Strategy.CREATE);
-        facade = MovieFacade.getFacadeExample(emf);
+        facade = MovieFacade.getMovieFacade(emf);
     }
 
     /*   **** HINT **** 
@@ -44,7 +44,7 @@ public class MovieFacadeTest {
     @BeforeAll
     public static void setUpClassV2() {
        emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST,Strategy.DROP_AND_CREATE);
-       facade = MovieFacade.getFacadeExample(emf);
+       facade = MovieFacade.getMovieFacade(emf);
     }
 
     @AfterAll
@@ -77,10 +77,6 @@ public class MovieFacadeTest {
     // TODO: Delete or change this method 
     @Test
     public void testAFacadeMethod() {
-        Movie movie1 = new Movie ("Hobitten", 2020, "test"); 
-        Movie movie2 = new Movie ("Titanic", 2000, "test2"); 
-        
-        
         assertEquals(2, facade.getAllMovies().size(), "Expects two rows in the database");
     }
 
